@@ -1,3 +1,4 @@
+// https://github.com/FZSS/js-heap/blob/master/Heap.js
 // heap invariant: each node has a smaller key than its children
 class PriorityQueue {
   constructor(data = [], compare = defaultCompare) {
@@ -63,6 +64,8 @@ class PriorityQueue {
 
   _down(pos) {
     const {data, compare} = this;
+    // we can stop at half length, because children is at 2*i+1, 2*i+2
+    // if we go over half length, no children for us to see 
     const halfLength = this.length >> 1;
     let i = pos;
 
@@ -84,5 +87,5 @@ class PriorityQueue {
   }
 }
 
+// default to a mean heap
 defaultCompare = (a, b) => a - b;
-
